@@ -2,6 +2,8 @@ from ultralytics import YOLO
 
 model=YOLO("yolov8n.pt")
 
-result=model.predict(source="https://ultralytics.com/images/bus.jpg",save=True,conf=0.25)
+results=model(source="https://ultralytics.com/images/bus.jpg")
 
-print("Mission complete! Check the 'runs/detect' folder for the output image.")
+for result in results:
+    result.save(filename="results.jpg")
+    print("Image saved as results.jpg")
